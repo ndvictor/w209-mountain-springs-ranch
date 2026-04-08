@@ -1,80 +1,96 @@
-# DATASCI 209 flask template
+# Course
 
-This repo provides a basic flask app for DATASCI 209 students and instructors. You can run this flask app locally for development/debugging or deploy it to [Vercel](https://vercel.com).
+## DATASCI 209: Data Visualization
+## UC Berkeley School of Information
 
-*Note there is a size limitatinon of 250MB*, this means you have the careful with which POython libraries you include alongside `Flask` (e.g., `sklearn` is too big).
+# Mountain Springs Ranch Cattle Movement Visualization
 
-## Getting Started
+This project is an interactive data visualization created for **DATASCI 209: Data Visualization** at the **UC Berkeley School of Information**.
 
-1. Install Python 3.x on your computer.
-2. [Create a copy](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template) of this repo in your personal GitHub workspace. For example, if your GitHub username is **octocat**, you would make octocat the owner of your copy of the repository.
-3. Clone your copy of this repo from GitHub to your computer.
+It visualizes how cattle groups move across the different ranch locations of **Mountain Springs Ranch** over the course of a year. The goal is to help users understand **seasonal herd distribution** and observe how cattle move across ranch units over time.
 
-## Local Development
+## Project Overview
 
-**Install dependencies**
+Mountain Springs Ranch is a large cow-calf cattle operation in central Idaho, with herds distributed across many non-contiguous locations. Different land units are used seasonally, and different herds specialize in different cattle types.
 
-Open a terminal and navigate to the folder that contains your local copy of this repo.  Run the following command to install the necessary Python libraries:
+Our visualization combines:
 
-**Mac**
+- spatial context through a ranch map
+- temporal exploration through animation and a time slider
+- categorical detail through cattle-type encodings
+- daily herd state reconstruction from narrative movement data
+
+The result is an interactive tool that allows users to:
+
+- visualize seasonal herd distribution
+- show movement across ranch locations over time
+- track where cattle are located on a selected date
+- compare herd composition across locations and seasons
+
+## Features
+
+- Interactive Observable visualization embedded into a project website
+- Playable time-based animation of herd movement
+- Date-based exploration of cattle distribution
+- Ranch map showing herd locations
+- Visual encoding of cattle type and head count
+- Project website with explanatory narrative, design process, usability notes, and team information
+
+## Data Sources
+
+The project is based on two main data sources:
+
+- **Ranch valuation map**
+- **Range manager narrative**
+
+These inputs were transformed into a machine-readable daily ranch state table so that cattle locations could be visualized consistently across time.
+
+## Tech Stack
+
+- **Flask**
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **Observable**
+- **Vercel**
+
+## Project Structure
+
+```text
+.
+├── app.py
+├── requirements.txt
+├── vercel.json
+├── templates/
+│   └── w209.html
+├── static/
+│   ├── team/
+│   └── ranch-hero.mp4
+└── README.md
 ```
-pip3 install -r requirements.txt
-```
+## Local Devopment
 
-**Windows**
-```
-py -m pip install -r requirements.txt
-```
+Clone the repo and run locally:
 
-See the [pip documentation](https://pip.pypa.io/en/stable/cli/pip_install/) if you need more information about installing Python libraries with pip.
-
-**Run your app locally**
-
-In the folder where you cloned a copy of this repo, run the following command.  The --debug option will cause flask to automatically load any code changes you make.
-
-```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 flask --app app.py --debug run
 ```
+Then open:
 
-**Point your browser to http://127.0.0.1:5000**
+```bash
+http://127.0.0.1:5000
+```
 
-When running your app locally with the --debug flag, flask's built-in debugger will provide an interactive traceback in your browser.  You can also use an external debugger such as the one in your preferred IDE to troubleshoot your code.  See the flask [Debugging Application Errors](https://flask.palletsprojects.com/en/stable/debugging/) documentation for more information on debugging your flask app.
+## Deployment
 
-## Hosting your flask app on Vercel
+This project is configured for deployment on Vercel using Flask.
 
-Vercel provides a cloud platform that you can use to host your flask app for free (with generous limits on the hobby tier).
+## Team Members
 
-**How to deploy your flask app to Vercel**
-
-1. Create a [Vercel](https://vercel.com) account. You can sign up with your GitHub account for easy integration.
-
-2. From the Vercel dashboard, click **Add New...** → **Project**.
-
-3. Select **Import Git Repository** and choose your fork of this flask template repository.
-   - If you don't see your repository, click **Adjust GitHub App Permissions** to grant Vercel access to the repo.
-
-4. Vercel will automatically detect the project settings from the `vercel.json` file. You don't need to change any settings.
-
-5. Click **Deploy**. Vercel will build and deploy your application.
-
-6. Once deployment completes, Vercel will provide you with a URL for your app (e.g., `https://your-project-name.vercel.app`).
-
-**Automatic Deployments**
-
-Every time you push changes to the main branch of your GitHub repository, Vercel will automatically rebuild and deploy your app. You can also create preview deployments by pushing to other branches or creating pull requests.
-
-**Custom Domains**
-
-You can add a custom domain to your Vercel project from the project settings. See Vercel's [Custom Domains documentation](https://vercel.com/docs/concepts/projects/domains) for more information.
-
-**Troubleshooting**
-
-- Check the **Deployments** tab in your Vercel project dashboard to view build logs and identify any errors.
-- See Vercel's [Python documentation](https://vercel.com/docs/functions/runtimes/python) for more details on Python runtime support.
-- Visit Vercel's [Support page](https://vercel.com/support) if you need additional help.
-
-**Important Notes**
-
-- Vercel's free hobby tier includes generous limits for personal projects and learning.
-- The `vercel.json` file in this repo configures the Python runtime and routing for Flask.
-- Static files in the `static/` folder are served automatically.
+- Alec Heyde
+- Brian Jaffe
+- Ewura Mensah
+- Victor Ndayambaje
