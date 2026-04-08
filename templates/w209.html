@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mountain Springs Ranch | W209 Final Project</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f5f2;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .navbar a:hover {
+      color: #fbbf24;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 24px;
+}
+
+#visualization.section {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 70px 0;
+}
+
+#visualization h2,
+#visualization p {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: #0f172a;
+    }
+
+    .section p {
+      margin-bottom: 14px;
+      font-size: 1.05rem;
+    }
+
+    .viz-frame {
+      width: 100%;
+      max-width: none;
+      margin-top: 20px;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
+}
+
+    .viz-frame iframe {
+      width: 100%;
+      min-height: 1100px;
+      border: none;
+      border-radius: 0;
+      display: block;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #92400e;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .panel h3 {
+      margin-bottom: 12px;
+      color: #92400e;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 28px 16px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        padding: 14px 18px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .navbar nav {
+        justify-content: center;
+      }
+
+      .viz-frame iframe {
+        min-height: 650px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">Mountain Springs Ranch</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#overview">Overview</a>
+      <a href="#visualization">Visualization</a>
+      <a href="#insights">Insights</a>
+      <a href="#design">Design</a>
+      <a href="#testing">Testing</a>
+      <a href="#team">Team Members</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="{{ url_for('static', filename='ranch-hero.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Visualizing Cattle Operations at Mountain Springs Ranch</h1>
+      <p>
+        An interactive spatiotemporal visualization showing how cattle groups move across ranch
+        locations over the course of 2025.
+      </p>
+    </div>
+  </section>
+
+  <section id="overview" class="section">
+    <h2>Project Overview</h2>
+    <p>
+      Mountain Springs Ranch is a large cow-calf cattle operation in central Idaho with herds spread
+      across many non-contiguous locations. Different land units are used seasonally, and different
+      herds specialize in different cattle types.
+    </p>
+    <p>
+      Our goal was to create an interactive visualization that helps users understand where cattle are
+      located on any given day, how herd distribution changes over time, and how ranch operations
+      evolve spatially and seasonally.
+    </p>
+  </section>
+
+  <section id="visualization" class="section">
+    <h2>Interactive Visualization</h2>
+    <p>
+      This interactive visualization shows seasonal herd distribution at Mountain Springs Ranch and illustrates how cattle move across ranch locations over time. 
+      By combining geography with animation, it helps users understand when and where different cattle groups are concentrated throughout the year.
+    </p>
+
+    <div class="viz-frame">
+      <iframe
+        src="https://observablehq.com/embed/@berkeleyvis/mountain-springs-ranch?cells=chart_cattle"
+        title="Mountain Springs Ranch Visualization">
+      </iframe>
+    </div>
+  </section>
+
+  <section id="insights" class="section">
+    <h2>Key Insights</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Seasonal Redistribution</h3>
+        <p>
+          Cattle shift across ranch units over the course of the year, reflecting seasonal grazing
+          patterns and operational logistics.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Location Specialization</h3>
+        <p>
+          Different sites support different cattle types, making the ranch’s operational geography
+          easier to interpret.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Daily Ranch State</h3>
+        <p>
+          Transforming narrative movement data into a complete daily state table made reliable
+          day-by-day visualization possible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="design" class="section">
+    <h2>Design and Data Process</h2>
+
+    <div class="two-col">
+      <div class="panel">
+        <h3>Data Pipeline</h3>
+        <p>
+          We began with a range manager narrative and a ranch valuation map. The original data
+          was event-based and did not directly capture full herd state on each day.
+        </p>
+        <ul>
+          <li>Extract movement events from the narrative</li>
+          <li>Build daily observed herd records</li>
+          <li>Expand to a complete machine-readable daily state table</li>
+          <li>Visualize cattle type, location, and head count through time</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3>Design Evolution</h3>
+        <p>
+          Our design evolved from simple movement logs toward an interactive map-based temporal view
+          that better communicates both geography and seasonality.
+        </p>
+        <ul>
+          <li>Early focus on raw movement events</li>
+          <li>Need for a true daily ranch snapshot</li>
+          <li>Map-centered design to anchor users spatially</li>
+          <li>Date slider and playback controls for temporal exploration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="testing" class="section">
+    <h2>Usability Testing</h2>
+    <p>
+      We conducted usability testing to understand whether users could correctly interpret the map,
+      time controls, cattle categories, and daily herd distribution.
+    </p>
+
+    <div class="two-col">
+      <div class="panel">
+        <h3>What We Tested</h3>
+        <ul>
+          <li>Can users identify where cattle are on a selected date?</li>
+          <li>Can users interpret dot counts and cattle types?</li>
+          <li>Can users understand seasonal changes over time?</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3>What We Changed</h3>
+        <ul>
+          <li>Improved labeling and legend clarity</li>
+          <li>Made time controls more prominent</li>
+          <li>Refined map readability and explanatory text</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+  <h2>About</h2>
+
+  <p><strong>Audience:</strong> Ranch operators, analysts, classmates, and instructors</p>
+  <p><strong>Tools:</strong> Observable, Flask, HTML, CSS, JavaScript, Vercel</p>
+  <p><strong>Data Sources:</strong> Ranch valuation map and range manager narrative</p>
+  <p><strong>Course:</strong> DATASCI 209, UC Berkeley School of Information</p>
+
+  
+  </section>
+  <section id="team" class="section">
+  <h2>Team Members</h2>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="{{ url_for('static', filename='team/alec.jpg') }}" alt="Alec Heyde" class="team-photo">
+      <h3>Alec Heyde</h3>
+      <p>Team Member</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{{ url_for('static', filename='team/brian.jpg') }}" alt="Brian Jaffe" class="team-photo">
+      <h3>Brian Jaffe</h3>
+      <p>Team Member</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{{ url_for('static', filename='team/ewura.jpg') }}" alt="Ewura Mensah" class="team-photo">
+      <h3>Ewura Mensah</h3>
+      <p>Team Member</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{{ url_for('static', filename='team/victor.jpg') }}" alt="Victor Ndayambaje" class="team-photo">
+      <h3>Victor Ndayambaje</h3>
+      <p>Team Member</p>
+    </div>
+  </div>
+</section>
+
+  <footer class="footer">
+    <p>W209 Final Project • Mountain Springs Ranch Visualization</p>
+  </footer>
+</body>
+</html>
